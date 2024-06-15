@@ -12,7 +12,7 @@ const timeStringSchema = z.string().refine(
   },
 );
 
-const slotValidationSchema = z.object({
+const bookingValidationSchema = z.object({
   body: z.object({
     service: z
       .string({ required_error: 'Service Id is required' })
@@ -33,6 +33,6 @@ const slotValidationSchema = z.object({
   }),
 });
 
-export const slotValidation = {
-  slotValidationSchema,
+export const bookingValidation = {
+  bookingValidationSchema,
 };

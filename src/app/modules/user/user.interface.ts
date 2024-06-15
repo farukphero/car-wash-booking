@@ -1,3 +1,5 @@
+import { USER_ROLE } from "./user.const";
+
 export interface TUser {
     name: string;
     email: string;
@@ -11,5 +13,7 @@ export interface TUser {
   TUser & {
     comparePassword(candidatePassword: string): Promise<boolean>;
   };
+
+  export type TUserRole = keyof typeof USER_ROLE;
 
   

@@ -20,4 +20,19 @@ const serviceSchema: Schema<TService> = new Schema<TService>(
   },
 );
 
+serviceSchema.pre('find', function (next) {
+  this.where({ isDeleted: { $ne: true } });
+  next();
+});
+
+serviceSchema.pre('findOne', function (next) {
+  this.where({ isDeleted: { $ne: true } });
+  next();
+});
+
+serviceSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+  next();
+});
+
 export const Service = model<TService>('Service', serviceSchema);
