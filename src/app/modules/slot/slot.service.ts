@@ -78,7 +78,7 @@ const createSlotIntoDB = async (payload: TSlot) => {
 };
 
 const getSlotWithQueryFromDB = async (query: Record<string, unknown>) => {
-  let { date, serviceId } = query;
+  const { date, serviceId } = query;
 
   let serviceObjectId = null;
   if (serviceId && Types.ObjectId.isValid(serviceId as string)) {

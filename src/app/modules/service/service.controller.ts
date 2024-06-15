@@ -50,7 +50,6 @@ const updateService = catchAsync(async (req, res) => {
 });
 const softDeleteService = catchAsync(async (req, res) => {
   const { id } = req.params;
- 
 
   const result = await ServiceServices.softDeleteService(id as string);
 
@@ -67,5 +66,5 @@ export const serviceController = {
   getSingleService,
   getAllServices,
   updateService,
-  softDeleteService
+  softDeleteService,
 };

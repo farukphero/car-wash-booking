@@ -54,5 +54,5 @@ const loginUserWithDB = async (payload: Partial<TUser>) => {
 
 export const UserServices = {
   createUserIntoDB,
-  loginUserWithDB
+  loginUserWithDB,
 };

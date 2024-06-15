@@ -11,12 +11,7 @@ router
     validateRequest(userValidation.userValidationSchema),
     userController.createUser,
   );
-router
-  .route('/login')
-  .post(
-    validateRequest(userValidation.userValidationSchema),
-    userController.loginUser,
-  );
+router.route('/login').post(userController.loginUser);
 
 // router
 //   .route('/:productId')

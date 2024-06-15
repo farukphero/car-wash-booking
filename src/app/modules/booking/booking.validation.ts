@@ -1,35 +1,50 @@
 import mongoose from 'mongoose';
 import { z } from 'zod';
 
-
-const timeStringSchema = z.string().refine(
-  (time) => {
-    const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;  
-    return regex.test(time);
-  },
-  {
-    message: 'Invalid time format , expected "HH:MM" in 24 hours format',
-  },
-);
-
 const bookingValidationSchema = z.object({
   body: z.object({
+    customer: z
+      .string({ required_error: 'Customer is required' })
+      .refine((val) => mongoose.Types.ObjectId.isValid(val), {
+        message: 'Invalid customer ID',
+      })
+      .optional(),
     service: z
-      .string({ required_error: 'Service Id is required' })
+      .string({ required_error: 'Service is required' })
       .refine((val) => mongoose.Types.ObjectId.isValid(val), {
         message: 'Invalid service ID',
-      }),
-    date: z
-      .string({ required_error: 'Date is required' })
-      .refine((val) => !isNaN(Date.parse(val)), {
-        message: 'Invalid date',
-      }),
-    startTime: timeStringSchema,
-    endTime: timeStringSchema,
-    isBooked: z
-      .enum(['available', 'booked', 'canceled'])
-      .optional()
-      .default('available'),
+      })
+      .optional(),
+    slot: z
+      .string({ required_error: 'Slot is required' })
+      .refine((val) => mongoose.Types.ObjectId.isValid(val), {
+        message: 'Invalid slot ID',
+      })
+      .optional(),
+    vehicleType: z.enum([
+      'car',
+      'truck',
+      'SUV',
+      'van',
+      'motorcycle',
+      'bus',
+      'electricVehicle',
+      'hybridVehicle',
+      'bicycle',
+      'tractor',
+    ]),
+    vehicleBrand: z.string({ required_error: 'Vehicle brand is required' }),
+    vehicleModel: z.string({ required_error: 'Vehicle model is required' }),
+    manufacturingYear: z
+      .number()
+      .min(1886, 'Manufacturing year must be greater than 1885')
+      .max(
+        new Date().getFullYear(),
+        'Manufacturing year cannot be in the future',
+      ),
+    registrationPlate: z.string({
+      required_error: 'Registration plate is required',
+    }),
   }),
 });
 

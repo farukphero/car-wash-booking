@@ -1,6 +1,8 @@
 import { TErrorSources, TGenericErrorResponse } from '../interface/error';
 
-const handleDuplicateError = (err: any): TGenericErrorResponse => {
+const handleDuplicateError = (err: {
+  message: string;
+}): TGenericErrorResponse => {
   const match = err.message.match(/"([^"]*)"/);
   const extractedMessage = match && match[1];
 
@@ -15,7 +17,7 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
 
   return {
     statusCode,
-    message: err?.message||'Invalid ID',
+    message: err?.message || 'Invalid ID',
     errorSources,
   };
 };

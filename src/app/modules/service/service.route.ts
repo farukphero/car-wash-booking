@@ -21,17 +21,5 @@ router
   .get(serviceController.getSingleService)
   .put(authorization(USER_ROLE.admin), serviceController.updateService)
   .delete(authorization(USER_ROLE.admin), serviceController.softDeleteService);
-// router
-//   .route('/login')
-//   .post(
-//     validateRequest(userValidation.userValidationSchema),
-//     userController.loginUser,
-//   );
-
-// router
-//   .route('/:productId')
-//   .get(ProductControllers.getSingleProduct)
-//   .put(ProductControllers.updateProduct)
-//   .delete(ProductControllers.deleteProduct);
 
 export const ServiceRoutes = router;

@@ -13,5 +13,5 @@ const serviceValidationSchema = z.object({
 });
 
 export const serviceValidation = {
-    serviceValidationSchema,
+  serviceValidationSchema,
 };

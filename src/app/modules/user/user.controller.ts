@@ -20,15 +20,13 @@ const loginUser = catchAsync(async (req, res) => {
 
   const result = await UserServices.loginUserWithDB(user as TUser);
 
-  res
-    .status(StatusCodes.OK)
-    .json({
-      statusCode: StatusCodes.OK,
-      success: true,
-      message: 'User logged in successfully',
-      token: result.token,
-      data: result.user,
-    });
+  res.status(StatusCodes.OK).json({
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'User logged in successfully',
+    token: result.token,
+    data: result.user,
+  });
 });
 
 export const userController = {

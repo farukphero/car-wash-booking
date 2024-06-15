@@ -26,5 +26,5 @@ const getSlotWithQueryFromDB = catchAsync(async (req, res) => {
 
 export const slotController = {
   createSlots,
-  getSlotWithQueryFromDB
+  getSlotWithQueryFromDB,
 };
