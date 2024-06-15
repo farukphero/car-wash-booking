@@ -10,9 +10,7 @@ const createServiceIntoDB = async (payload: TService) => {
 };
 const getAllServices = async () => {
   const service = await Service.find({});
-  if (service.length === 0) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'No services found.');
-  }
+ 
 
   return service;
 };

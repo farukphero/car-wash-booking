@@ -90,9 +90,7 @@ const getAllBookings = async () => {
     .populate('service', '_id name description price duration isDeleted')
     .populate('slot', '_id service date startTime endTime isBooked')
     .exec();
-  if (booking.length === 0) {
-    throw new AppError(StatusCodes.NO_CONTENT, 'No data found.');
-  }
+
   return booking;
 };
 const getMyBookings = async (user: JwtPayload) => {
@@ -108,7 +106,7 @@ const getMyBookings = async (user: JwtPayload) => {
     .select('-customer')
     .exec();
   if (!booking) {
-    throw new AppError(StatusCodes.NO_CONTENT, 'No data found.');
+    throw new AppError(StatusCodes.NOT_FOUND, 'No data found.');
   }
   return booking;
 };

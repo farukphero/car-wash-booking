@@ -13,10 +13,4 @@ router
   );
 router.route('/login').post(userController.loginUser);
 
-// router
-//   .route('/:productId')
-//   .get(ProductControllers.getSingleProduct)
-//   .put(ProductControllers.updateProduct)
-//   .delete(ProductControllers.deleteProduct);
-
 export const UserRoutes = router;
