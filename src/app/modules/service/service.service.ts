@@ -10,7 +10,6 @@ const createServiceIntoDB = async (payload: TService) => {
 };
 const getAllServices = async () => {
   const service = await Service.find({});
- 
 
   return service;
 };

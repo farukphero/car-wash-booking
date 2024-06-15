@@ -51,7 +51,7 @@ const createSlotIntoDB = async (payload: TSlot) => {
 
   // Generate and save slots
   const slots = [];
-  
+
   for (let i = 0; i < numberOfSlots; i++) {
     const slotStartMinutes = startMinutes + i * duration;
     const slotEndMinutes = slotStartMinutes + duration;
