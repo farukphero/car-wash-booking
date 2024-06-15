@@ -77,10 +77,9 @@ const createBookingIntoDB = async (payload: TBooking) => {
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
-    throw new AppError(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      'Something went wrong',
-    );
+    if (error instanceof Error) {
+      throw new AppError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
   }
 };
 
